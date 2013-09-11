@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = I18nUtils::VERSION
   spec.authors       = ["Henrik Nyh"]
   spec.email         = ["henrik@nyh.se"]
-  spec.summary       = "Helpful i18n utilities."
+  spec.summary       = "I18n utilities for Ruby on Rails."
   spec.homepage      = "http://github.com/henrik/i18n_utils"
   spec.license       = "MIT"
 
