@@ -23,7 +23,7 @@ module I18nUtils
     end
   end
 
-  module All
+  module Helper
     include Model
     include Scope
   end

@@ -5,7 +5,7 @@ I18n utilities for Ruby on Rails.
 
 ## Usage
 
-Just `include I18nUtils::All` in e.g. your `ApplicationHelper` to get all the things.
+Just `include I18nUtils::Helper` in e.g. your `ApplicationHelper` to get all the things.
 
 Or see under each section to only get that part.
 

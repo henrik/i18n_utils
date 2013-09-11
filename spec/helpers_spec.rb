@@ -1,7 +1,7 @@
 require "i18n_utils"
 
 describe I18nUtils do
-  include I18nUtils::All
+  include I18nUtils::Helper
 
   describe "t_attribute" do
     it "uses human_attribute_name" do
