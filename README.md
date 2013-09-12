@@ -40,7 +40,7 @@ The `t_scope` helper lets you use blocks for interpolated values, in your regula
 
 ``` slim
 = t_scope(:"welcome.sign_in_now.text") do |scope|
-  scope.sign_in do
+  - scope.sign_in do
     = link_to(scope.t(:sign_in), sign_in_url)
 ```
 
