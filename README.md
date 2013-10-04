@@ -32,14 +32,14 @@ Get this part with `include I18nUtils::Scope` in e.g. your `ApplicationHelper`.
 Links or other markup in the middle of a translation is tricky. Either you put the HTML straight in the translation and risk the translator messing it up, or it becomes a mess:
 
 ``` slim
-= t(:"welcome.sign_in_now.text",
-  sign_in: link_to(t(:"welcome.sign_in_now.sign_in"), sign_in_url))
+= t("welcome.sign_in_now.text",
+  sign_in: link_to(t("welcome.sign_in_now.sign_in"), sign_in_url))
 ```
 
 The `t_scope` helper lets you use blocks for interpolated values, in your regular template:
 
 ``` slim
-= t_scope(:"welcome.sign_in_now.text") do |scope|
+= t_scope("welcome.sign_in_now.text") do |scope|
   - scope.sign_in do
     = link_to(scope.t(:sign_in), sign_in_url)
 ```
