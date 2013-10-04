@@ -1,5 +1,7 @@
 require "i18n_utils"
 
+class FakeModel; end
+
 describe I18nUtils do
   include I18nUtils::Helper
 
@@ -13,11 +15,22 @@ describe I18nUtils do
   end
 
   describe "t_model" do
-    it "uses model_name.human" do
-      klass = double
-      klass.stub_chain(:model_name, :human).and_return("Clase")
-      t_model(klass).should == "Clase"
-      I18nUtils.t_model(klass).should == "Clase"
+    before do
+      FakeModel.stub_chain(:model_name, :human).and_return("Clase")
+    end
+
+    context "given a class" do
+      it "uses model_name.human" do
+        t_model(FakeModel).should == "Clase"
+        I18nUtils.t_model(FakeModel).should == "Clase"
+      end
+    end
+
+    context "given an instance" do
+      it "looks it up on the class" do
+        t_model(FakeModel.new).should == "Clase"
+        I18nUtils.t_model(FakeModel.new).should == "Clase"
+      end
     end
   end
 

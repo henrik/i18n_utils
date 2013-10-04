@@ -16,7 +16,7 @@ Get this part with `include I18nUtils::Model` in e.g. your `ApplicationHelper`.
 
 I think the Rails way to translate attributes and models is ugly and on the wrong object.
 
-With this, your views can do `t_model(User)` instead of `User.model_name.human`.
+With this, your views can do `t_model(User)` instead of `User.model_name.human`. Or pass an instance: `t_model(some_user)`
 
 Also `t_attribute(User, :email)` instead of `User.human_attribute_name(:email)`.
 

@@ -9,7 +9,8 @@ module I18nUtils
       klass.human_attribute_name(attribute)
     end
 
-    def t_model(klass)
+    def t_model(class_or_instance)
+      klass = class_or_instance.respond_to?(:model_name) ? class_or_instance : class_or_instance.class
       klass.model_name.human
     end
   end
