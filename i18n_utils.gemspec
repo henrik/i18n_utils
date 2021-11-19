@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "I18n utilities for Ruby on Rails."
   spec.homepage      = "https://github.com/henrik/i18n_utils"
   spec.license       = "MIT"
+  spec.metadata      = { "rubygems_mfa_required" => "true" }
 
   spec.files         = Dir["lib/**/*"] + ["README.md", "LICENSE.txt"]
   spec.executables   = []
