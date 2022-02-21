@@ -45,7 +45,7 @@ describe I18nUtils do
       expect(self).to receive(:capture) { |&block| block.call }
 
       expect(self).to receive(:t).
-        with("sign_in_now.text", sign_in: %{<a href="url">Sign in</a>}).
+        with("sign_in_now.text", { sign_in: %{<a href="url">Sign in</a>}}).
         and_return("output")
 
       expect(self).to receive(:t).
