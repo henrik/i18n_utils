@@ -2,34 +2,34 @@ require "i18n_utils"
 
 class FakeModel; end
 
-describe I18nUtils do
+RSpec.describe I18nUtils do
   include I18nUtils::Helper
 
   describe "t_attribute" do
     it "uses human_attribute_name" do
       klass = double
       allow(klass).to receive(:human_attribute_name).with(:foo).and_return("foux du fafa")
-      t_attribute(klass, :foo).should == "foux du fafa"
-      I18nUtils.t_attribute(klass, :foo).should == "foux du fafa"
+      expect(t_attribute(klass, :foo)).to eq "foux du fafa"
+      expect(I18nUtils.t_attribute(klass, :foo)).to eq "foux du fafa"
     end
   end
 
   describe "t_model" do
     before do
-      FakeModel.stub_chain(:model_name, :human).and_return("Clase")
+      allow(FakeModel).to receive_message_chain(:model_name, :human).and_return("Clase")
     end
 
     context "given a class" do
       it "uses model_name.human" do
-        t_model(FakeModel).should == "Clase"
-        I18nUtils.t_model(FakeModel).should == "Clase"
+        expect(t_model(FakeModel)).to eq "Clase"
+        expect(I18nUtils.t_model(FakeModel)).to eq  "Clase"
       end
     end
 
     context "given an instance" do
       it "looks it up on the class" do
-        t_model(FakeModel.new).should == "Clase"
-        I18nUtils.t_model(FakeModel.new).should == "Clase"
+        expect(t_model(FakeModel.new)).to eq "Clase"
+        expect(I18nUtils.t_model(FakeModel.new)).to eq "Clase"
       end
     end
   end
