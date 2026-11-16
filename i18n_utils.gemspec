@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'i18n_utils/version'
+require_relative "lib/i18n_utils/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "i18n_utils"
@@ -15,9 +13,6 @@ Gem::Specification.new do |spec|
   spec.metadata      = { "rubygems_mfa_required" => "true" }
 
   spec.files         = Dir["lib/**/*"] + ["README.md", "LICENSE.txt"]
-  spec.executables   = []
-  spec.test_files    = Dir["spec/**/*"]
-  spec.require_paths = ["lib"]
 
   spec.add_dependency "i18n"
   spec.add_dependency "activesupport"
