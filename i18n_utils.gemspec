@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/henrik/i18n_utils"
   spec.license       = "MIT"
   spec.metadata      = { "rubygems_mfa_required" => "true" }
+  spec.required_ruby_version = ">= 2.7"
 
   spec.files         = Dir["lib/**/*"] + ["README.md", "LICENSE.txt"]
   spec.executables   = []
