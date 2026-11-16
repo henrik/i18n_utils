@@ -22,7 +22,7 @@ module I18nUtils
       base_key = key.to_s.rpartition(".").first
       scope = ScopeContext.new(base_key, self)
       yield(scope)
-      t(key, scope.to_hash).html_safe
+      t(key, **scope.to_hash).html_safe
     end
   end
 
@@ -44,8 +44,8 @@ module I18nUtils
       @hash
     end
 
-    def t(key, opts = {})
-      @helper.t("#{@base_key}.#{key}", opts)
+    def t(key, **opts)
+      @helper.t("#{@base_key}.#{key}", **opts)
     end
 
     def method_missing(name, *args, &block)

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "action_view"
 require "i18n_utils"
 
 class FakeModel; end
@@ -36,29 +37,24 @@ RSpec.describe I18nUtils do
     end
   end
 
-  # Not as integrated as I might like to really trust these tests, but simple.
-  # Suggestions for improvement are very welcome.
   describe "t_scope" do
-    def link_to(text, url)
-      %{<a href="#{url}">#{text}</a>}
+    around do |example|
+      I18n.backend.store_translations(:en, sign_in_now: { text: "Please %{sign_in} now.", sign_in: "sign in" })
+      I18n.with_locale(:en) { example.run }
+    ensure
+      I18n.reload!
     end
 
     it "captures content and abbreviates scopes" do
-      expect(self).to receive(:capture) { |&block| block.call }
+      view = ActionView::Base.empty
+      view.extend(I18nUtils::Helper)
 
-      expect(self).to receive(:t).
-        with("sign_in_now.text", { sign_in: %{<a href="url">Sign in</a>}}).
-        and_return("output")
+      html = view.t_scope("sign_in_now.text") { |scope|
+        scope.sign_in { view.link_to(scope.t(:sign_in), "/login") }
+      }
 
-      expect(self).to receive(:t).
-        with("sign_in_now.sign_in", {}).
-        and_return("Sign in")
-
-      t_scope("sign_in_now.text") do |scope|
-        scope.sign_in do
-          link_to(scope.t(:sign_in), "url")
-        end
-      end
+      expect(html).to eq %{Please <a href="/login">sign in</a> now.}
+      expect(html).to be_html_safe
     end
   end
 end
